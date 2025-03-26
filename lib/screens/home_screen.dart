@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
     await FirebaseAuth.instance.signOut();
 
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => SigninScreen(),
+      builder: (context) => const SigninScreen(),
     ));
   }
 
@@ -18,8 +18,18 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        actions: [
+          IconButton(
+              onPressed: () {
+                signOut(context);
+              },
+              icon: const Icon(Icons.logout))
+        ],
       ),
-      
+      body: const Center(
+        child: Text('Halo'),
+      ),
     );
   }
 }

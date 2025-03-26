@@ -53,7 +53,7 @@ class _SigninScreenState extends State<SigninScreen> {
                           email: _emailController.text,
                           password: _passwordController.text);
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
+                        builder: (context) => const HomeScreen(),
                       ));
                     } catch (e) {
                       setState(() {
