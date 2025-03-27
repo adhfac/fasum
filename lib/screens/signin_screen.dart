@@ -1,7 +1,6 @@
 import 'package:fasum/screens/home_screen.dart';
 import 'package:fasum/screens/signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class SigninScreen extends StatefulWidget {
@@ -15,6 +14,7 @@ class _SigninScreenState extends State<SigninScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   String _errorMessage = ' ';
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +40,23 @@ class _SigninScreenState extends State<SigninScreen> {
               ),
               TextField(
                 controller: _passwordController,
-                decoration: const InputDecoration(
-                    labelText: 'Your password?', border: OutlineInputBorder()),
+                obscureText: _obscurePassword,
+                decoration: InputDecoration(
+                  labelText: 'Your password?',
+                  border: const OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 16,
